@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "bboard"
+version = "0.1.0"
+description = ""
+authors = ["jshuckbot <gorka_ivan@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "4.2"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
