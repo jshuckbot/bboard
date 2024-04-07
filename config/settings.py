@@ -126,3 +126,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Укажем модель пользователя, используемую подсистемой для разграничения прав доступа
 AUTH_USER_MODEL = "main.AdvUser"
+
+LOGOUT_REDIRECT_URL = "main:index"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

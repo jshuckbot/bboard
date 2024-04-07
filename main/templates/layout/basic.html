@@ -32,10 +32,10 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Профиль</a>
                         <div class="dropdown-menu">
                             <a href="{% url 'main:profile' %}" class="dropdown-item">Мои объявления</a>
-                            <a href="#" class="dropdown-item">Изменить личные данные</a>
-                            <a href="#" class="dropdown-item">Изменить пароль</a>
+                            <a href="{% url 'main:profile_edit' %}" class="dropdown-item">Изменить личные данные</a>
+                            <a href="{% url 'main:password_edit' %}" class="dropdown-item">Изменить пароль</a>
                             <hr class="dropdown-divider">
-                            <form class="px-3">
+                            <form class="px-3" method="post" action="{% url 'main:logout' %}">
                                 {% csrf_token %}
                                 {% bootstrap_button 'Выйти' button_class='btn-danger' %}
                             </form>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <a href="#" class="nav-link">Регистрация</a>
+                    <a href="{% url 'main:register' %}" class="nav-link">Регистрация</a>
                     <a href="{% url 'main:login' %}" class="nav-link">Вход</a>
                 {% endif %}
             </div>
