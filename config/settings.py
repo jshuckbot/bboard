@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_bootstrap5",
+    "django_cleanup",
+    "easy_thumbnails",
+    "captcha",
 ]
 
 MIDDLEWARE = [
@@ -64,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "main.middleware.bboard_context_processor",
             ],
         },
     },
@@ -119,6 +123,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "media/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -130,3 +137,15 @@ AUTH_USER_MODEL = "main.AdvUser"
 LOGOUT_REDIRECT_URL = "main:index"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+THUMBNAIL_ALIASES = {
+    "": {
+        "default": {
+            "size": (96, 96),
+            "crop": "scale",
+        },
+    },
+}
+
+THUMBNAIL_BASEDIR = "thumbnails"

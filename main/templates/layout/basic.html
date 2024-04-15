@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Главная{% endblock title %} - Доска объявлений</title>
     {% bootstrap_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
     {% bootstrap_javascript %}
 </head>
 <body class="container-fluid">
@@ -40,7 +40,7 @@
                                 {% bootstrap_button 'Выйти' button_class='btn-danger' %}
                             </form>
                             <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">Удалить</a>
+                            <a href="{% url 'main:profile_delete' %}" class="dropdown-item">Удалить</a>
                         </div>
                     </div>
                 {% else %}
@@ -53,13 +53,12 @@
 </nav>
 <div class="row">
     <nav class="col-md-auto nav flex-column bg-light">
-        <span class="nav-link root">Недвижимоть</span>
-        <a href="#" class="nav-link">Жилье</a>
-        <a href="#" class="nav-link">Склады</a>
-        <a href="#" class="nav-link">Гаражи</a>
-        <span class="nav-link root">Транспорт</span>
-        <a href="#" class="nav-link">Легковой</a>
-        <a href="#" class="nav-link">Грузовой</a>
+        {% for rubric in rubrics %}
+            {% ifchanged rubric.super_rubric.pk %}
+                <span class="nav-link root">{{ rubric.super_rubric.name }}</span>
+            {% endifchanged %}
+            <a href="{% url 'main:rubric_bbs' pk=rubric.pk %}" class="nav-link">{{ rubric.name }}</a>
+        {% endfor %}
         <a href="{% url 'main:other' page='about' %}" class="nav-link">О сайте</a>
     </nav>
     <main class="col py-2">
